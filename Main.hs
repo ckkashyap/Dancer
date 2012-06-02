@@ -1,0 +1,5 @@
+
+
+
+
+main=putStrLn "hello world"
