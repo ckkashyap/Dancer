@@ -22,11 +22,9 @@ repeatAction action n = do
 pause = repeatAction (applyChange id)
 
 
-
-
 clap = do
-     repeatAction (applyChange (moveUpperLeftArm 10 X)) 36
- --    repeatAction (applyChange (moveUpperRightArm (-40) X)) 9
+     repeatAction (applyChange (moveLowerLeftArm 40 X)) 9
+     repeatAction (applyChange (moveLowerRightArm (-40) X)) 9
 
 
 
@@ -44,7 +42,7 @@ dance = do
 
       applyChange ((turn (-20)).(liftRightUpperArm (-5)).(liftLeftUpperArm (-15)))
       applyChange ((turn (-20)).(liftRightUpperArm (-5)).(liftLeftUpperArm (-15)))
-      applyChange ((turn (-20)).(liftRightUpperArm (-5)).(liftLeftUpperArm (-15)))
+3      applyChange ((turn (-20)).(liftRightUpperArm (-5)).(liftLeftUpperArm (-15)))
       applyChange ((turn (-20)).(liftRightUpperArm (5)).(liftLeftUpperArm (15)))
       applyChange ((turn (-20)).(liftRightUpperArm (5)).(liftLeftUpperArm (15)))
       applyChange ((turn (-20)).(liftRightUpperArm (5)).(liftLeftUpperArm (15)))
