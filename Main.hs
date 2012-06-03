@@ -2,6 +2,7 @@ import Pose
 import JavaScript
 import HTML
 import Moves
+import Geometry
 import Control.Monad.State
 
 type MyState = State [Pose] Int
@@ -21,7 +22,7 @@ dance = do
       applyChange id
       applyChange id
       
-      applyChange (turn 30)
+      applyChange (turn (- 30) Y)
       applyChange id
       applyChange id
 
