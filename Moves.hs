@@ -45,6 +45,9 @@ moveUpperRightLeg diff axis pose = pose { upperRightLegAngle = modifyCoordinate3
 moveLowerRightLeg :: Double -> Axis -> Pose -> Pose
 moveLowerRightLeg diff axis pose = pose { lowerRightLegAngle = modifyCoordinate3D axis (lowerRightLegAngle pose) (+ diff) }
 
+movePosition :: Double -> Axis -> Pose -> Pose
+movePosition diff axis pose = pose { backBonePosition = modifyCoordinate3D axis (backBonePosition pose) (+ diff) }
+
 
 turn :: Double -> Axis -> Pose -> Pose
 turn diff axis pose = pose {

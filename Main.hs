@@ -27,7 +27,8 @@ repeatAction action n = do
 pause :: Int -> State [Pose] Int
 pause = repeatAction (applyChange id)
 
-swingArmsAndLegs :: Bool -> Pose -> Pose
+
+swingArmsAndLegs :: Bool -> Pose -> Pose -- Depending on the boolean, swing the left arm and right leg forard and right arm and left leg backward
 swingArmsAndLegs b = ((moveUpperLeftArm  d_positive Z)
                      .(moveUpperRightArm d_negetive Z)
                      .(moveUpperLeftLeg d_negetive Z)
@@ -35,12 +36,27 @@ swingArmsAndLegs b = ((moveUpperLeftArm  d_positive Z)
                  where 
                        (d_positive, d_negetive) = if b then (10, -10) else (-10,10)
 
+
+
+
 walk :: State [Pose] Int
 walk = do
      repeatAction (applyChange (swingArmsAndLegs True)) 5
+     applyChange (movePosition (-5) Z)
      repeatAction (applyChange (swingArmsAndLegs False)) 5
+     applyChange (movePosition (-5) Z)
      repeatAction (applyChange (swingArmsAndLegs False)) 5
+     applyChange (movePosition (-5) Z)
      repeatAction (applyChange (swingArmsAndLegs True)) 5
+     applyChange (movePosition (-5) Z)
+     repeatAction (applyChange (swingArmsAndLegs True)) 5
+     applyChange (movePosition (-5) Z)
+     repeatAction (applyChange (swingArmsAndLegs False)) 5
+     applyChange (movePosition (-5) Z)
+     repeatAction (applyChange (swingArmsAndLegs False)) 5
+     applyChange (movePosition (-5) Z)
+     repeatAction (applyChange (swingArmsAndLegs True)) 5
+     applyChange (movePosition (-5) Z)
 
 
 dance :: State [Pose] Int
