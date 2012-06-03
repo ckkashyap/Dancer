@@ -13,19 +13,29 @@ applyChange f = do
              put (newStep:step:steps)
              return 0
 
+pause = do
+      applyChange id
+      applyChange id
+      applyChange id
+      applyChange id
+
+
+
+
 dance :: State [Pose] Int
 dance = do
-      return 0
-
-      applyChange id
-      applyChange id
-      applyChange id
-      applyChange id
+      pause
       
       applyChange (turn (- 30) Y)
-      applyChange id
-      applyChange id
+      pause
 
+      applyChange (turn (- 30) Y)
+      pause
+
+      applyChange (turn 30 Y)
+      pause
+
+      applyChange (turn 30 Y)
 
 {-
       applyChange ((turn 20).(liftRightUpperArm 5).(liftLeftUpperArm 15))
