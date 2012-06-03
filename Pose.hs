@@ -56,17 +56,17 @@ dancer2triangles d = [ neck, backBone, upperLeftArm, upperRightArm, lowerLeftArm
                  lowerLeftArmTip = otherEnd upperLeftArmTip (addCoordinates3D (addCoordinates3D (lowerLeftArmAngle d) (upperLeftArmAngle d)) (backBoneAngle d)) lowerArmLength
 
                  upperRightArm = (backBoneTop, backBoneTop, upperRightArmTip)
-                 upperRightArmTip = otherEnd backBoneTop (upperRightArmAngle d) upperArmLength
+                 upperRightArmTip = otherEnd backBoneTop (addCoordinates3D (upperRightArmAngle d) (backBoneAngle d)) upperArmLength
                  lowerRightArm = (upperRightArmTip, upperRightArmTip, lowerRightArmTip)
-                 lowerRightArmTip = otherEnd upperRightArmTip (lowerRightArmAngle d) lowerArmLength
+                 lowerRightArmTip = otherEnd upperRightArmTip (addCoordinates3D (addCoordinates3D (lowerRightArmAngle d) (upperRightArmAngle d)) (backBoneAngle d)) lowerArmLength
 
                  upperLeftLeg = (backBonePosition d, backBonePosition d, upperLeftLegTip)
                  upperLeftLegTip = otherEnd (backBonePosition d) (upperLeftLegAngle d) upperLegLength
                  lowerLeftLeg = (upperLeftLegTip, upperLeftLegTip, lowerLeftLegTip)
-                 lowerLeftLegTip = otherEnd upperLeftLegTip (lowerLeftLegAngle d) lowerLegLength
+                 lowerLeftLegTip = otherEnd upperLeftLegTip (addCoordinates3D (lowerLeftLegAngle d) (upperLeftLegAngle d)) lowerLegLength
 
                  upperRightLeg = (backBonePosition d, backBonePosition d, upperRightLegTip)
                  upperRightLegTip = otherEnd (backBonePosition d) (upperRightLegAngle d) upperLegLength
                  lowerRightLeg = (upperRightLegTip, upperRightLegTip, lowerRightLegTip)
-                 lowerRightLegTip = otherEnd upperRightLegTip (lowerRightLegAngle d) lowerLegLength
+                 lowerRightLegTip = otherEnd upperRightLegTip (addCoordinates3D (lowerRightLegAngle d) (upperRightLegAngle d)) lowerLegLength
 

@@ -3,17 +3,17 @@ import Pose
 import Geometry
 
 initialPose  = Pose {
-       neckAngle          = (0, 90, 90),
-       backBoneAngle      = (0, 90, 90),
+       neckAngle          = (0, 0, 0),
+       backBoneAngle      = (-90, 0, 0),
        backBonePosition   = (0, 0, 0),
-       upperLeftArmAngle  = (0, 90, 210),
-       upperRightArmAngle = (0, 90, -30),
-       lowerLeftArmAngle  = (0, 90, -90),
-       lowerRightArmAngle = (0, 90, -90),
-       upperLeftLegAngle  = (0, 90, 210),
-       upperRightLegAngle = (0, 90, -30),
-       lowerLeftLegAngle  = (0, 90, -90),
-       lowerRightLegAngle = (0, 90, -90)
+       upperLeftArmAngle  = (-135 , 0, 0),
+       upperRightArmAngle = (135, 0, 0),
+       lowerLeftArmAngle  = (0, 0, 0),
+       lowerRightArmAngle = (0, 0, 0),
+       upperLeftLegAngle  = (120, 0, 0),
+       upperRightLegAngle = (60, 0, 0),
+       lowerLeftLegAngle  = (0, 0, 0),
+       lowerRightLegAngle = (0, 0, 0)
        }
 
 
