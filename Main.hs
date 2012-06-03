@@ -12,6 +12,11 @@ applyChange f = do
              let newStep = f step
              put (newStep:step:steps)
              return 0
+             
+addPosition p = do
+            ps <- get
+            put (p:ps)
+            return 0
 
 repeatAction action 0 = return 0
 repeatAction action n = do
@@ -19,51 +24,31 @@ repeatAction action n = do
              repeatAction action (n - 1)
              
 
+pause :: Int -> State [Pose] Int
 pause = repeatAction (applyChange id)
 
+swingArmsAndLegs :: Bool -> Pose -> Pose
+swingArmsAndLegs b = ((moveUpperLeftArm  d_positive Z)
+                     .(moveUpperRightArm d_negetive Z)
+                     .(moveUpperLeftLeg d_negetive Z)
+                     .(moveUpperRightLeg d_positive Z))
+                 where 
+                       (d_positive, d_negetive) = if b then (10, -10) else (-10,10)
 
-clap = do
-     repeatAction (applyChange (moveLowerLeftArm 40 X)) 9
-     repeatAction (applyChange (moveLowerRightArm (-40) X)) 9
-
-
+walk :: State [Pose] Int
+walk = do
+     repeatAction (applyChange (swingArmsAndLegs True)) 5
+     repeatAction (applyChange (swingArmsAndLegs False)) 5
+     repeatAction (applyChange (swingArmsAndLegs False)) 5
+     repeatAction (applyChange (swingArmsAndLegs True)) 5
 
 
 dance :: State [Pose] Int
 dance = do
-      pause 4
-      clap
-      pause 4
-
-{-
-      applyChange ((turn 20).(liftRightUpperArm 5).(liftLeftUpperArm 15))
-      applyChange ((turn 20).(liftRightUpperArm 5).(liftLeftUpperArm 15))
-      applyChange ((turn 20).(liftRightUpperArm 5).(liftLeftUpperArm 15))
-
-      applyChange ((turn (-20)).(liftRightUpperArm (-5)).(liftLeftUpperArm (-15)))
-      applyChange ((turn (-20)).(liftRightUpperArm (-5)).(liftLeftUpperArm (-15)))
-3      applyChange ((turn (-20)).(liftRightUpperArm (-5)).(liftLeftUpperArm (-15)))
-      applyChange ((turn (-20)).(liftRightUpperArm (5)).(liftLeftUpperArm (15)))
-      applyChange ((turn (-20)).(liftRightUpperArm (5)).(liftLeftUpperArm (15)))
-      applyChange ((turn (-20)).(liftRightUpperArm (5)).(liftLeftUpperArm (15)))
-
-      applyChange ((turn 20).(liftRightUpperArm (-5)).(liftLeftUpperArm (-15)))
-      applyChange ((turn 20).(liftRightUpperArm (-5)).(liftLeftUpperArm (-15)))
-      applyChange ((turn 20).(liftRightUpperArm (-5)).(liftLeftUpperArm (-15)))
--}
+      walk
 
 danceMoves = execState dance [initialPose]
 javascript = animation2JS (map dancer2triangles danceMoves)
-
-t1 = ((0,0,0), (50, 0, 0), (25,-25,0))
-
-
-p1 = (0,0,0)
-p2 = otherEnd p1 (0, 0, 0) 100
-p3 = otherEnd p1 (-90, 0, 0) 100
-
-
---javascript = animation2JS [[(p1,p2,p3)]]
 
 
 main = do

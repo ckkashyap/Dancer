@@ -7,10 +7,10 @@ initialPose  = Pose {
        backBoneAngle      = (-90, 0, 0),
        backBonePosition   = (0, 0, 0),
 
-       upperLeftArmAngle  = (-160 , 0, 0),
+       upperLeftArmAngle  = (-150 , 0, 0),
        lowerLeftArmAngle  = (-30, 0, 0),
 
-       upperRightArmAngle = (155, 0, 0),
+       upperRightArmAngle = (150, 0, 0),
        lowerRightArmAngle = (30, 0, 0),
 
        upperLeftLegAngle  = (100, 0, 0),
