@@ -1,10 +1,10 @@
-import Dancer
+import Pose
 import JavaScript
 import HTML
 import Moves
 import Control.Monad.State
 
-type MyState = State [Dancer] Int
+type MyState = State [Pose] Int
 
 applyChange f = do
              (step:steps) <- get
@@ -12,14 +12,21 @@ applyChange f = do
              put (newStep:step:steps)
              return 0
 
+dance :: State [Pose] Int
 dance = do
       return 0
-{-
+
       applyChange id
       applyChange id
+      applyChange id
+      applyChange id
+      
+      applyChange (turn 30)
       applyChange id
       applyChange id
 
+
+{-
       applyChange ((turn 20).(liftRightUpperArm 5).(liftLeftUpperArm 15))
       applyChange ((turn 20).(liftRightUpperArm 5).(liftLeftUpperArm 15))
       applyChange ((turn 20).(liftRightUpperArm 5).(liftLeftUpperArm 15))

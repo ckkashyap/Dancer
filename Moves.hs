@@ -1,7 +1,7 @@
 module Moves where
-import Dancer
+import Pose
 
-initialPose  = Dancer {
+initialPose  = Pose {
        neckAngleX = 0,
        neckAngleY = 90,
        neckAngleZ =  90,
@@ -48,15 +48,15 @@ initialPose  = Dancer {
 
        }
 
-moveUpperLeftArmZ :: Double -> Dancer -> Dancer
+moveUpperLeftArmZ :: Double -> Pose -> Pose
 moveUpperLeftArmZ diff d  = d {upperLeftArmAngleZ  = (upperLeftArmAngleZ d) + diff}
 
-moveUpperRightArmZ :: Double -> Dancer -> Dancer
+moveUpperRightArmZ :: Double -> Pose -> Pose
 moveUpperRightArmZ diff d = d {upperRightArmAngleZ = (upperRightArmAngleZ d) - diff}
 
 
 
-turn :: Double -> Dancer -> Dancer
+turn :: Double -> Pose -> Pose
 turn diff d = d {
        neckAngleY          = (neckAngleY d)          - diff,
        backBoneAngleY      = (backBoneAngleY d)      - diff,
